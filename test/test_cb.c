@@ -2,10 +2,9 @@
 #include "tinytest.h"
 #define BUFFER_SIZE 5
 
-cb_t cb;
-
 void test_init(void)
 {
+	cb_t cb;
 	ASSERT_EQUALS(true, cb_init(&cb, BUFFER_SIZE)); 
 	ASSERT_EQUALS(true, cb_is_empty(cb));
 	ASSERT_EQUALS(false, cb_is_full(cb));
@@ -13,6 +12,9 @@ void test_init(void)
 
 void test_add_item(void)
 {
+	cb_t cb;
+	ASSERT_EQUALS(true, cb_init(&cb, BUFFER_SIZE)); 
+	
 	cb_add(&cb, 10);
 	ASSERT_EQUALS(false, cb_is_empty(cb));
 	ASSERT_EQUALS(false, cb_is_full(cb));
@@ -24,6 +26,9 @@ void test_add_item(void)
 
 void test_buffer(void)
 {
+	cb_t cb;
+	ASSERT_EQUALS(true, cb_init(&cb, BUFFER_SIZE)); 
+	
 	cb_add(&cb, 1);
 	cb_add(&cb, 2);
 	cb_add(&cb, 3);
