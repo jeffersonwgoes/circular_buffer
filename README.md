@@ -10,9 +10,6 @@ It's a study case to force myself to use TDD and always a work in progress.
 -	Simple but useful
 
 ## TODO
-- Variable lenght (Now its fixed to 5 elements);
-- Add more tests;
-- Change buffer to user declared buffer;
 - Change buffer from uint8_t to void* (then you can use this to any struct);
 - Documentation doxygen;
 - Documentation sphynx;
