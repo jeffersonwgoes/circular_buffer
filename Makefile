@@ -1,21 +1,18 @@
-# Test makefile
+SOURCES = $(shell find $(SOURCEDIR) -name '*.c')
+OBJS = $(SOURCES:.c=.o)
+CC = gcc
+CC_FLAGS = -pedantic -Wall -W -std=c11 -Werror
+INCLUDES = -Itest -Iinc
 
-all: create_build_dir ./build/test_cb 
+SRCS = $(wildcard *.c)
 
-OBJ = ./build/cb.o ./build/test_cb.o
+all:
+	echo $(SOURCES)
 
-create_build_dir: 
-	@ mkdir build
+cb_test: $(OBJS)
+	$(CC) -o $@ $(OBJS)
+	./cb_test
 
-./build/test_cb: $(OBJ)
-	@ gcc -o $@ $(OBJ)
-	@ ./build/test_cb
-	
-./build/test_cb.o: ./test/test_cb.c 
-	@ gcc -o $@ $< -c -W -Wall -pedantic -Itest/tinytest/ -Iinc/
+%.o: %.c
+	$(CC) -o $@ $< -c $(CC_FLAGS) $(INCLUDES)
 
-./build/cb.o: ./src/cb.c ./inc/cb.h
-	@ gcc -o $@ $< -c -W -Wall -ansi -pedantic -Iinc/
-
-clean:
-	@ rm -Rf build
